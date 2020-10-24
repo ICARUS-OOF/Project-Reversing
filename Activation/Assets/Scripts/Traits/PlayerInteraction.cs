@@ -113,7 +113,13 @@ namespace ProjectReversing.Traits
                     pickupRB.constraints = RigidbodyConstraints.None;
                 }
             }
-
+            if (currentlyPickedUpObject != null)
+            {
+                if (currentlyPickedUpObject.GetComponent<ActivationCube>() == null)
+                {
+                    currentlyPickedUpObject = null;
+                }
+            }
         }
         //Release the object
         public void BreakConnection()

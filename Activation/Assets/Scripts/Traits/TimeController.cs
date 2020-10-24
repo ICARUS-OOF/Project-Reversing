@@ -16,7 +16,7 @@ namespace ProjectReversing.Traits
         #endregion
         public float DeltaTime;
         public float TimeScale;
-        bool TimeSlowed = false;
+        public bool TimeSlowed = false;
         private void Update()
         {
             if (PlayerUI.singleton.isPaused)
@@ -30,7 +30,7 @@ namespace ProjectReversing.Traits
             }
             if (TimeSlowed)
             {
-                TimeScale = Mathf.Lerp(TimeScale, 0.05f, Time.fixedDeltaTime * 5f);
+                TimeScale = Mathf.Lerp(TimeScale, 0f, Time.fixedDeltaTime * 5f);
             } else
             {
                 TimeScale = Mathf.Lerp(TimeScale, 1f, Time.fixedDeltaTime * 5f);

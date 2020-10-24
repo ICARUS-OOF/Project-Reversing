@@ -7,5 +7,6 @@ namespace ProjectReversing.Interfaces
     {
         bool isTriggered { get; set; }
         void Trigger();
+        void UnTrigger();
     }
 }

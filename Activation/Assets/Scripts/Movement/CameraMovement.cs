@@ -1,11 +1,20 @@
-﻿using ProjectReversing.Handlers;
-using ProjectReversing.Traits;
+﻿using ProjectReversing.Traits;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
+
 namespace ProjectReversing.Movement
 {
     public class CameraMovement : MonoBehaviour
     {
         public Transform playerHead;
+        public PostProcessVolume PPV;
+        Vignette vignetteLayer;
+        ChromaticAberration chromaticAberrationLayer;
+        private void Start()
+        {
+            PPV.profile.TryGetSettings(out vignetteLayer);
+            PPV.profile.TryGetSettings(out chromaticAberrationLayer);
+        }
         void Update()
         {
             if (PlayerUI.singleton.isPaused)
@@ -13,22 +22,24 @@ namespace ProjectReversing.Movement
                 return;
             }
             transform.position = playerHead.position;
-            /*
-            if (PlayerUI.singleton.isPaused)
+            if (TimeController.singleton != null)
             {
-                return;
+                if (TimeController.singleton.TimeSlowed)
+                {
+                    vignetteLayer.enabled.value = true;
+                    vignetteLayer.intensity.value = Mathf.Lerp(vignetteLayer.intensity.value, 0.4f, Time.fixedDeltaTime * 5f);
+
+                    chromaticAberrationLayer.enabled.value = true;
+                    chromaticAberrationLayer.intensity.value = Mathf.Lerp(chromaticAberrationLayer.intensity.value, 0.8f, Time.fixedDeltaTime * 5f);
+                } else
+                {
+                    vignetteLayer.enabled.value = true;
+                    vignetteLayer.intensity.value = Mathf.Lerp(vignetteLayer.intensity.value, 0.22f, Time.fixedDeltaTime * 5f);
+
+                    chromaticAberrationLayer.enabled.value = true;
+                    chromaticAberrationLayer.intensity.value = Mathf.Lerp(chromaticAberrationLayer.intensity.value, 0.2f, Time.fixedDeltaTime * 5f);
+                }
             }
-
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.fixedDeltaTime * GameHandler.sensitivity;
-            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.fixedDeltaTime * GameHandler.sensitivity;
-
-            xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, -55f, 55f);
-
-            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-            playerBody.Rotate(Vector3.up * mouseX);
-            */
         }
     }
 }

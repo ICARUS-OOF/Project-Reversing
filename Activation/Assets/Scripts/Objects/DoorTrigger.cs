@@ -1,5 +1,6 @@
 ﻿using ProjectReversing.Handlers;
 using ProjectReversing.Interfaces;
+using ProjectReversing.Traits;
 using UnityEngine;
 namespace ProjectReversing.Objects
 {
@@ -8,6 +9,11 @@ namespace ProjectReversing.Objects
         public int triggersCount = 1;
         private int _CurrentTriggerCount;
         public bool isTriggered { get; set; }
+        Vector3 origScale;
+        void Start()
+        {
+            origScale = transform.localScale;
+        }
         public void Trigger()
         {
             _CurrentTriggerCount++;
@@ -16,11 +22,18 @@ namespace ProjectReversing.Objects
                 isTriggered = true;
             }
         }
+        public void UnTrigger()
+        {
+            isTriggered = false;
+        }
         private void FixedUpdate()
         {
             if (isTriggered)
             {
-                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(transform.localScale.x, 0f, transform.localScale.z), Time.fixedDeltaTime * ConstantHandler.TriggerLerpSpeed);
+                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(transform.localScale.x, 0f, transform.localScale.z), TimeController.singleton.DeltaTime * ConstantHandler.TriggerLerpSpeed);
+            } else
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, origScale, TimeController.singleton.DeltaTime * ConstantHandler.TriggerLerpSpeed);
             }
         }
     }
