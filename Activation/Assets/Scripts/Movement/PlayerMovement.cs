@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjectReversing.Handlers;
+using ProjectReversing.Traits;
+using System;
 using UnityEngine;
 namespace ProjectReversing.Movement
 {
@@ -15,13 +17,12 @@ namespace ProjectReversing.Movement
         //Rotation and look
         private float xRotation;
         private float sensitivity = 50f;
-        private float sensMultiplier = 1f;
 
         //Movement
         public float moveSpeed = 4500;
         public float maxSpeed = 20;
         public bool grounded;
-        public LayerMask whatIsGround;
+        public LayerMask GroundLayer;
 
         public float counterMovement = 0.175f;
         private float threshold = 0.01f;
@@ -61,23 +62,33 @@ namespace ProjectReversing.Movement
 
         private void FixedUpdate()
         {
+            if (PlayerUI.singleton.isPaused)
+            {
+                return;
+            }
             Movement();
         }
 
         private void Update()
         {
-            MyInput();
-            Look();
+            if (PlayerUI.singleton.isPaused)
+            {
+                return;
+            }
+            GetInputs();
+            CameraLook();
         }
 
         /// <summary>
         /// Find user input. Should put this in its own class but im lazy
         /// </summary>
-        private void MyInput()
+        private void GetInputs()
         {
             x = Input.GetAxisRaw("Horizontal");
             y = Input.GetAxisRaw("Vertical");
             jumping = Input.GetButton("Jump");
+
+            /*
             crouching = Input.GetKey(KeyCode.LeftControl);
 
             //Crouching
@@ -85,6 +96,7 @@ namespace ProjectReversing.Movement
                 StartCrouch();
             if (Input.GetKeyUp(KeyCode.LeftControl))
                 StopCrouch();
+            */
         }
 
         private void StartCrouch()
@@ -182,10 +194,10 @@ namespace ProjectReversing.Movement
         }
 
         private float desiredX;
-        private void Look()
+        private void CameraLook()
         {
-            float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
-            float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
+            float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * GameHandler.sensitivity;
+            float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * GameHandler.sensitivity;
 
             //Find current look rotation
             Vector3 rot = playerCam.transform.localRotation.eulerAngles;
@@ -265,7 +277,7 @@ namespace ProjectReversing.Movement
         {
             //Make sure we are only checking for walkable layers
             int layer = other.gameObject.layer;
-            if (whatIsGround != (whatIsGround | (1 << layer))) return;
+            if (GroundLayer != (GroundLayer | (1 << layer))) return;
 
             //Iterate through every collision in a physics update
             for (int i = 0; i < other.contactCount; i++)

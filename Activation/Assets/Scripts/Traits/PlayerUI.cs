@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 namespace ProjectReversing.Traits
 {
     public class PlayerUI : MonoBehaviour
@@ -16,8 +18,11 @@ namespace ProjectReversing.Traits
             }
         }
         #endregion
+        public bool isLobby = true;
         public bool isPaused = false;
         public GameObject Crosshair;
+        public GameObject PauseMenuUI;
+        public GameObject playerObject;
         private void Update()
         {
             if (isPaused)
@@ -29,6 +34,18 @@ namespace ProjectReversing.Traits
                 GameHandler.LockCursor();
                 Crosshair.SetActive(true);
             }
+            if (isLobby)
+            {
+
+            } else
+            {
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    isPaused = true;
+                }
+                PauseMenuUI.SetActive(isPaused);
+            }
+            playerObject.SetActive(!isPaused);
         }
         public void Pause()
         {
@@ -37,6 +54,14 @@ namespace ProjectReversing.Traits
         public void Resume()
         {
             isPaused = false;
+        }
+        public void Respawn()
+        {
+
+        }
+        public void Exit()
+        {
+            SceneManager.LoadScene("Lobby");
         }
     }
 }

@@ -5,19 +5,14 @@ namespace ProjectReversing.Movement
 {
     public class CameraMovement : MonoBehaviour
     {
-        public float mouseSensitivity = 100f;
-        public Transform playerBody;
-
-        float xRotation = 0f;
-
-        void Start()
-        {
-            
-        }
-
+        public Transform playerHead;
         void Update()
         {
-            transform.position = playerBody.position;
+            if (PlayerUI.singleton.isPaused)
+            {
+                return;
+            }
+            transform.position = playerHead.position;
             /*
             if (PlayerUI.singleton.isPaused)
             {

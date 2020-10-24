@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 namespace ProjectReversing.Handlers
 {
     [RequireComponent(typeof(AudioSource))]
@@ -22,13 +24,29 @@ namespace ProjectReversing.Handlers
         private void Start()
         {
             source = GetComponent<AudioSource>();
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+        }
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            AudioSource[] sources = GameObject.FindObjectsOfType<AudioSource>();
+            for (int i = 0; i < sources.Length; i++)
+            {
+                if (sources[i].transform.name != "MusicHandler")
+                {
+                    sources[i].volume *= GameHandler.volume;
+                }
+            }
         }
         private void Update()
         {
             AudioSource[] sources = GameObject.FindObjectsOfType<AudioSource>();
             for (int i = 0; i < sources.Length; i++)
             {
-                sources[i].volume = GameHandler.volume;
+                if (sources[i].transform.name == "MusicHandler")
+                {
+                    sources[i].volume = .5f * GameHandler.volume;
+                }
             }
         }
         public static void PlaySoundEffect(string ID)
