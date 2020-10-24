@@ -41,7 +41,7 @@ namespace ProjectReversing.Movement
 
         //Input
         float x, y;
-        bool jumping, sprinting, crouching;
+        bool jumping;
 
         //Sliding
         private Vector3 normalVector = Vector3.up;
@@ -58,8 +58,6 @@ namespace ProjectReversing.Movement
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-
-
         private void FixedUpdate()
         {
             if (PlayerUI.singleton.isPaused)
@@ -68,7 +66,6 @@ namespace ProjectReversing.Movement
             }
             Movement();
         }
-
         private void Update()
         {
             if (PlayerUI.singleton.isPaused)
@@ -86,7 +83,7 @@ namespace ProjectReversing.Movement
         {
             x = Input.GetAxisRaw("Horizontal");
             y = Input.GetAxisRaw("Vertical");
-            jumping = Input.GetButton("Jump");
+            jumping = Input.GetKeyDown(KeyHandler.Jump);
 
             /*
             crouching = Input.GetKey(KeyCode.LeftControl);
@@ -98,30 +95,10 @@ namespace ProjectReversing.Movement
                 StopCrouch();
             */
         }
-
-        private void StartCrouch()
-        {
-            transform.localScale = crouchScale;
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
-            if (rb.velocity.magnitude > 0.5f)
-            {
-                if (grounded)
-                {
-                    rb.AddForce(orientation.transform.forward * slideForce);
-                }
-            }
-        }
-
-        private void StopCrouch()
-        {
-            transform.localScale = playerScale;
-            transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-        }
-
         private void Movement()
         {
             //Extra gravity
-            rb.AddForce(Vector3.down * Time.deltaTime * 10);
+            rb.AddForce(Vector3.down * Time.fixedDeltaTime * 10);
 
             //Find actual velocity relative to where player is looking
             Vector2 mag = FindVelRelativeToLook();
@@ -135,13 +112,6 @@ namespace ProjectReversing.Movement
 
             //Set max speed
             float maxSpeed = this.maxSpeed;
-
-            //If sliding down a ramp, add force down so player stays grounded and also builds speed
-            if (crouching && grounded && readyToJump)
-            {
-                rb.AddForce(Vector3.down * Time.deltaTime * 3000);
-                return;
-            }
 
             //If speed is larger than maxspeed, cancel out the input so you don't go over max speed
             if (x > 0 && xMag > maxSpeed) x = 0;
@@ -159,12 +129,9 @@ namespace ProjectReversing.Movement
                 multiplierV = 0.5f;
             }
 
-            // Movement while sliding
-            if (grounded && crouching) multiplierV = 0f;
-
             //Apply forces to move player
-            rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
-            rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+            rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.fixedDeltaTime * multiplier * multiplierV);
+            rb.AddForce(orientation.transform.right * x * moveSpeed * Time.fixedDeltaTime * multiplier);
         }
 
         private void Jump()
@@ -216,21 +183,14 @@ namespace ProjectReversing.Movement
         {
             if (!grounded || jumping) return;
 
-            //Slow down sliding
-            if (crouching)
-            {
-                rb.AddForce(moveSpeed * Time.deltaTime * -rb.velocity.normalized * slideCounterMovement);
-                return;
-            }
-
             //Counter movement
             if (Math.Abs(mag.x) > threshold && Math.Abs(x) < 0.05f || (mag.x < -threshold && x > 0) || (mag.x > threshold && x < 0))
             {
-                rb.AddForce(moveSpeed * orientation.transform.right * Time.deltaTime * -mag.x * counterMovement);
+                rb.AddForce(moveSpeed * orientation.transform.right * Time.fixedDeltaTime * -mag.x * counterMovement);
             }
             if (Math.Abs(mag.y) > threshold && Math.Abs(y) < 0.05f || (mag.y < -threshold && y > 0) || (mag.y > threshold && y < 0))
             {
-                rb.AddForce(moveSpeed * orientation.transform.forward * Time.deltaTime * -mag.y * counterMovement);
+                rb.AddForce(moveSpeed * orientation.transform.forward * Time.fixedDeltaTime * -mag.y * counterMovement);
             }
 
             //Limit diagonal running. This will also cause a full stop if sliding fast and un-crouching, so not optimal.
@@ -298,7 +258,7 @@ namespace ProjectReversing.Movement
             if (!cancellingGrounded)
             {
                 cancellingGrounded = true;
-                Invoke(nameof(StopGrounded), Time.deltaTime * delay);
+                Invoke(nameof(StopGrounded), Time.fixedDeltaTime * delay);
             }
         }
 

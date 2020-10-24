@@ -41,7 +41,7 @@ namespace ProjectReversing.Traits
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    isPaused = true;
+                    Pause();
                 }
                 PauseMenuUI.SetActive(isPaused);
             }
@@ -50,10 +50,12 @@ namespace ProjectReversing.Traits
         public void Pause()
         {
             isPaused = true;
+            Time.timeScale = 0f;
         }
         public void Resume()
         {
             isPaused = false;
+            Time.timeScale = 1f;
         }
         public void Respawn()
         {
@@ -61,6 +63,7 @@ namespace ProjectReversing.Traits
         }
         public void Exit()
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene("Lobby");
         }
     }

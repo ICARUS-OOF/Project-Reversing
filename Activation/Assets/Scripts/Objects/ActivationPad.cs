@@ -53,11 +53,11 @@ namespace ProjectReversing.Objects
         {
             if (_ActCube != null)
             {
-                _ActCube.transform.position = Vector3.Lerp(_ActCube.transform.position, ActCubePoint.position, Time.fixedDeltaTime * ConstantHandler.PadLerpSpeed);
-                _ActCube.transform.rotation = Quaternion.Lerp(_ActCube.transform.rotation, ActCubePoint.rotation, Time.fixedDeltaTime * ConstantHandler.PadLerpSpeed);
+                _ActCube.transform.position = Vector3.Lerp(_ActCube.transform.position, ActCubePoint.position, Time.fixedUnscaledDeltaTime * ConstantHandler.PadLerpSpeed);
+                _ActCube.transform.rotation = Quaternion.Lerp(_ActCube.transform.rotation, ActCubePoint.rotation, Time.fixedUnscaledDeltaTime * ConstantHandler.PadLerpSpeed);
                 for (int i = 0; i < RenderersToLerp.Count; i++)
                 {
-                    RenderersToLerp[i].material.color = Color.Lerp(RenderersToLerp[i].material.color, GetComponent<MeshRenderer>().material.color, Time.fixedDeltaTime * ConstantHandler.PadLerpSpeed);
+                    RenderersToLerp[i].material.color = Color.Lerp(RenderersToLerp[i].material.color, GetComponent<MeshRenderer>().material.color, Time.fixedUnscaledDeltaTime * ConstantHandler.PadLerpSpeed);
                 }
             }
         }

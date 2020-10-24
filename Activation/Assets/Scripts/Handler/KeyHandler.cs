@@ -10,5 +10,6 @@ namespace ProjectReversing.Handlers
         public static KeyCode Jump = KeyCode.Space;
         public static KeyCode Crouch = KeyCode.LeftControl;
         public static KeyCode PickUp = KeyCode.F;
+        public static KeyCode ControlTime = KeyCode.Q;
     }
 }

@@ -103,7 +103,7 @@ namespace ProjectReversing.Traits
                 pickupRB.velocity = direction.normalized * currentSpeed;
                 //Rotation
                 lookRot = Quaternion.LookRotation(mainCamera.transform.position - pickupRB.position);
-                lookRot = Quaternion.Slerp(mainCamera.transform.rotation, lookRot, rotationSpeed * Time.fixedDeltaTime);
+                lookRot = Quaternion.Slerp(mainCamera.transform.rotation, lookRot, rotationSpeed * Time.fixedUnscaledDeltaTime);
                 pickupRB.MoveRotation(lookRot);
                 if (lookObject == currentlyPickedUpObject)
                 {
