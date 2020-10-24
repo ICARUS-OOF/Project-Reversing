@@ -83,7 +83,7 @@ namespace ProjectReversing.Movement
         {
             x = Input.GetAxisRaw("Horizontal");
             y = Input.GetAxisRaw("Vertical");
-            jumping = Input.GetKeyDown(KeyHandler.Jump);
+            jumping = Input.GetKey(KeyHandler.Jump);
 
             /*
             crouching = Input.GetKey(KeyCode.LeftControl);

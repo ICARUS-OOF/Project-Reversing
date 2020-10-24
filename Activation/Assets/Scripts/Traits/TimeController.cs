@@ -24,7 +24,7 @@ namespace ProjectReversing.Traits
                 return;
             }
             DeltaTime = Time.fixedDeltaTime * TimeScale;
-            if (Input.GetKey(KeyHandler.ControlTime))
+            if (Input.GetKeyDown(KeyHandler.ControlTime))
             {
                 TimeSlowed = !TimeSlowed;
             }

@@ -1,6 +1,4 @@
 ﻿using ProjectReversing.Data;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
@@ -22,6 +20,7 @@ namespace ProjectReversing.Handlers
         public static float sensitivity = 1f;
         public static float volume = 1f;
         public static float GFX = 1f;
+        public static Vector3 LastCheckPointPos = Vector3.zero;
         #endregion
         #region Normal Methods
         private void Start()
