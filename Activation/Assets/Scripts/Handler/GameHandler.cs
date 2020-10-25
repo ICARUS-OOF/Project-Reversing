@@ -1,7 +1,9 @@
 ﻿using ProjectReversing.Data;
+using ProjectReversing.Movement;
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
-
+using UnityEngine.SceneManagement;
 namespace ProjectReversing.Handlers
 {
     public class GameHandler : MonoBehaviour
@@ -22,6 +24,10 @@ namespace ProjectReversing.Handlers
         public static float GFX = 1f;
         public static Vector3 LastCheckPointPos = Vector3.zero;
         #endregion
+        #region Events
+        public EventHandler OnPlayerDie;
+        public EventHandler<Vector3> OnCheckPointReached;
+        #endregion
         #region Normal Methods
         private void Start()
         {
@@ -29,10 +35,13 @@ namespace ProjectReversing.Handlers
             if (objs.Length > 1)
             {
                 Destroy(this.gameObject);
+                return;
             } else
             {
                 DontDestroyOnLoad(this.gameObject);
             }
+            OnPlayerDie += onPlayerDie;
+            OnCheckPointReached += onCheckPointReached;
         }
         private void Update()
         {
@@ -48,6 +57,25 @@ namespace ProjectReversing.Handlers
             {
                 PPVs[i].weight = GFX;
             }
+        }
+        void onPlayerDie(object sender, EventArgs e)
+        {
+            if (LastCheckPointPos != Vector3.zero)
+            { 
+                Debug.Log("EEE");
+                PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = true;
+                PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = false;
+                PlayerMovement.singleton.transform.position = LastCheckPointPos;
+                PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = false;
+                PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = true;
+            } else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
+        void onCheckPointReached(object sender, Vector3 _pos)
+        {
+            LastCheckPointPos = _pos;
         }
         #endregion
         #region Static Methods

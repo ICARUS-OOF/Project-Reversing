@@ -8,6 +8,9 @@ namespace ProjectReversing.Movement
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerMovement : MonoBehaviour
     {
+        //Singleton
+        public static PlayerMovement singleton;
+
         //Assingables
         public Transform playerCam;
         public Transform orientation;
@@ -51,6 +54,10 @@ namespace ProjectReversing.Movement
 
         void Awake()
         {
+            if (singleton == null)
+            {
+                singleton = this;
+            }
             rb = GetComponent<Rigidbody>();
         }
 
@@ -185,11 +192,9 @@ namespace ProjectReversing.Movement
             if (rb.velocity.magnitude >= 2f && grounded)
             {
                 footstepAudioSource.volume = Mathf.Lerp(footstepAudioSource.volume, 0.03f * GameHandler.volume, Time.fixedDeltaTime * 5f);
-                Debug.Log("Running...");
             }
             else if (rb.velocity.magnitude < 2f || !grounded)
             {
-                Debug.Log("Stopping...");
                 footstepAudioSource.volume = Mathf.Lerp(footstepAudioSource.volume, 0f, Time.fixedDeltaTime * 5f);
             }
         }

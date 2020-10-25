@@ -13,7 +13,7 @@ namespace ProjectReversing.Objects
             }
             if (col.transform.tag == ConstantHandler.PLAYER_TAG)
             {
-                GameHandler.LastCheckPointPos = transform.position;
+                GameHandler.singleton.OnCheckPointReached?.Invoke(this, transform.position);
                 isTriggered = true;
             }
         }

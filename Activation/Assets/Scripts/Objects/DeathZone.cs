@@ -1,7 +1,7 @@
 ﻿using ProjectReversing.Handlers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using System;
 namespace ProjectReversing.Objects
 {
     public class DeathZone : MonoBehaviour
@@ -10,7 +10,7 @@ namespace ProjectReversing.Objects
         {
             if (col.transform.tag == ConstantHandler.PLAYER_TAG)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                GameHandler.singleton.OnPlayerDie?.Invoke(this, EventArgs.Empty);
             }
         }
     }
