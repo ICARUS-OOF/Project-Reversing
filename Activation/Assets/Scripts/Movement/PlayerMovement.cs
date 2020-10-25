@@ -1,6 +1,7 @@
 ﻿using ProjectReversing.Handlers;
 using ProjectReversing.Traits;
 using System;
+using System.Collections;
 using UnityEngine;
 namespace ProjectReversing.Movement
 {
@@ -10,6 +11,7 @@ namespace ProjectReversing.Movement
         //Assingables
         public Transform playerCam;
         public Transform orientation;
+        public AudioSource footstepAudioSource;
 
         //Other
         private Rigidbody rb;
@@ -55,8 +57,6 @@ namespace ProjectReversing.Movement
         void Start()
         {
             playerScale = transform.localScale;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
         }
         private void FixedUpdate()
         {
@@ -74,6 +74,7 @@ namespace ProjectReversing.Movement
             }
             GetInputs();
             CameraLook();
+            SoundEffects();
         }
 
         /// <summary>
@@ -177,6 +178,20 @@ namespace ProjectReversing.Movement
             //Perform the rotations
             playerCam.transform.localRotation = Quaternion.Euler(xRotation, desiredX, 0);
             orientation.transform.localRotation = Quaternion.Euler(0, desiredX, 0);
+        }
+
+        private void SoundEffects()
+        {
+            if (rb.velocity.magnitude >= 2f && grounded)
+            {
+                footstepAudioSource.volume = Mathf.Lerp(footstepAudioSource.volume, 0.03f * GameHandler.volume, Time.fixedDeltaTime * 5f);
+                Debug.Log("Running...");
+            }
+            else if (rb.velocity.magnitude < 2f || !grounded)
+            {
+                Debug.Log("Stopping...");
+                footstepAudioSource.volume = Mathf.Lerp(footstepAudioSource.volume, 0f, Time.fixedDeltaTime * 5f);
+            }
         }
 
         private void CounterMovement(float x, float y, Vector2 mag)

@@ -192,6 +192,15 @@ MonoBehaviour:
   - ID: Door
     clip: {fileID: 8300000, guid: 2b9c251fca914fc43b9c21810839158f, type: 3}
     volume: 0.5
+  - ID: Picked Up
+    clip: {fileID: 8300000, guid: d12fe9465d8dfd149955e75c6c247b1c, type: 3}
+    volume: 0.7
+  - ID: Puzzle Solved
+    clip: {fileID: 8300000, guid: 3e4f7ea425be30e48afd0465723e2ea2, type: 3}
+    volume: 0.2
+  - ID: Run
+    clip: {fileID: 8300000, guid: 52701d38cda04874591c5a96f8613a07, type: 3}
+    volume: 0.4
   source: {fileID: 0}
 --- !u!1 &8295443411350322843
 GameObject:

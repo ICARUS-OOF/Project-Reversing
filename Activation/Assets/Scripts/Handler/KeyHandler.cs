@@ -11,5 +11,13 @@ namespace ProjectReversing.Handlers
         public static KeyCode Crouch = KeyCode.LeftControl;
         public static KeyCode PickUp = KeyCode.F;
         public static KeyCode ControlTime = KeyCode.Q;
+        public static bool isMoving()
+        {
+            return
+            Input.GetKey(KeyCode.W) ||
+            Input.GetKey(KeyCode.A) ||
+            Input.GetKey(KeyCode.S) ||
+            Input.GetKey(KeyCode.D);
+        }
     }
 }

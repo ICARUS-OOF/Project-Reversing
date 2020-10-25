@@ -135,6 +135,7 @@ namespace ProjectReversing.Traits
 
         public void PickUpObject()
         {
+            AudioHandler.PlaySoundEffect("Picked Up");
             physicsObject = lookObject.GetComponent<IHoldable>();
             currentlyPickedUpObject = lookObject;
             pickupRB = currentlyPickedUpObject.GetComponent<Rigidbody>();

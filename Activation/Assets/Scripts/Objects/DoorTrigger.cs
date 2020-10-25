@@ -20,6 +20,7 @@ namespace ProjectReversing.Objects
             if (_CurrentTriggerCount >= triggersCount)
             {
                 isTriggered = true;
+                AudioHandler.PlaySoundEffect("Puzzle Solved");
             }
         }
         public void UnTrigger()

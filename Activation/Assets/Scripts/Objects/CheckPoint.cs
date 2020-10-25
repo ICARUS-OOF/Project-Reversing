@@ -5,7 +5,6 @@ namespace ProjectReversing.Objects
     public class CheckPoint : MonoBehaviour
     {
         bool isTriggered = false;
-        [SerializeField] Transform CheckPointObject;
         private void OnTriggerEnter(Collider col)
         {
             if (isTriggered)
@@ -17,10 +16,6 @@ namespace ProjectReversing.Objects
                 GameHandler.LastCheckPointPos = transform.position;
                 isTriggered = true;
             }
-        }
-        private void Update()
-        {
-            CheckPointObject.Rotate(new Vector3(0f, 4f * Time.fixedDeltaTime, 0f));
         }
     }
 }
