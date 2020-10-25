@@ -1,4 +1,5 @@
 ﻿using ProjectReversing.Handlers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,11 +19,21 @@ namespace ProjectReversing.Traits
             }
         }
         #endregion
-        public bool isLobby = true;
         public bool isPaused = false;
         public GameObject Crosshair;
         public GameObject PauseMenuUI;
         public GameObject playerObject;
+        public GameObject BeginningPanel;
+        private void Start()
+        {
+            BeginningPanel.SetActive(true);
+            StartCoroutine(DisableBeginning());
+        }
+        private IEnumerator DisableBeginning()
+        {
+            yield return new WaitForSeconds(3f);
+            BeginningPanel.SetActive(false);
+        }
         private void Update()
         {
             if (isPaused)
@@ -34,17 +45,11 @@ namespace ProjectReversing.Traits
                 GameHandler.LockCursor();
                 Crosshair.SetActive(true);
             }
-            if (isLobby)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-
-            } else
-            {
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    Pause();
-                }
-                PauseMenuUI.SetActive(isPaused);
+                Pause();
             }
+            PauseMenuUI.SetActive(isPaused);
             playerObject.SetActive(!isPaused);
         }
         public void Pause()
@@ -59,7 +64,7 @@ namespace ProjectReversing.Traits
         }
         public void Respawn()
         {
-
+            GameHandler.singleton.OnPlayerDie?.Invoke(this, EventArgs.Empty);
         }
         public void Exit()
         {

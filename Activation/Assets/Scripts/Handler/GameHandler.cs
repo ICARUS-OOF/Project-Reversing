@@ -62,7 +62,6 @@ namespace ProjectReversing.Handlers
         {
             if (LastCheckPointPos != Vector3.zero)
             { 
-                Debug.Log("EEE");
                 PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = true;
                 PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = false;
                 PlayerMovement.singleton.transform.position = LastCheckPointPos;
@@ -70,7 +69,11 @@ namespace ProjectReversing.Handlers
                 PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = true;
             } else
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = true;
+                PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = false;
+                PlayerMovement.singleton.transform.position = Vector3.zero;
+                PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = false;
+                PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = true;
             }
         }
         void onCheckPointReached(object sender, Vector3 _pos)
