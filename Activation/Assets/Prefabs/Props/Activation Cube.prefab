@@ -205,6 +205,7 @@ MonoBehaviour:
   activationColor: 0
   waitOnPickup: 0.2
   breakForce: 35
+  ignoreTime: 1
   spotLight: {fileID: 5471493640487751711}
 --- !u!54 &5471493640700806575
 Rigidbody:

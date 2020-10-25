@@ -1,13 +1,21 @@
 ﻿using ProjectReversing.Handlers;
 using ProjectReversing.Interfaces;
 using ProjectReversing.Objects;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 namespace ProjectReversing.Traits
 {
     public class PlayerInteraction : MonoBehaviour
     {
+        #region Singleton
+        public static PlayerInteraction singleton;
+        private void Awake()
+        {
+            if (singleton == null)
+            {
+                singleton = this;
+            }
+        }
+        #endregion
         [Header("Pickup")]
         [SerializeField] private Transform pickupParent;
         public GameObject currentlyPickedUpObject;

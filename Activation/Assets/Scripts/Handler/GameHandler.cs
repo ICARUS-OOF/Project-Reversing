@@ -1,5 +1,6 @@
 ﻿using ProjectReversing.Data;
 using ProjectReversing.Movement;
+using ProjectReversing.Traits;
 using System;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
@@ -42,6 +43,29 @@ namespace ProjectReversing.Handlers
             }
             OnPlayerDie += onPlayerDie;
             OnCheckPointReached += onCheckPointReached;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (SceneManager.GetActiveScene().name == "Main")
+            {
+                if (LastCheckPointPos != Vector3.zero)
+                {
+                    PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = true;
+                    PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = false;
+                    PlayerMovement.singleton.transform.position = LastCheckPointPos;
+                    PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = false;
+                    PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = true;
+                }
+                else
+                {
+                    PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = true;
+                    PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = false;
+                    PlayerMovement.singleton.transform.position = Vector3.zero;
+                    PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = false;
+                    PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = true;
+                }
+            }
         }
         private void Update()
         {

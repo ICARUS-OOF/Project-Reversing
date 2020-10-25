@@ -20,6 +20,7 @@ namespace ProjectReversing.Traits
         }
         #endregion
         public bool isPaused = false;
+        public bool canPause = false;
         public GameObject Crosshair;
         public GameObject PauseMenuUI;
         public GameObject playerObject;
@@ -32,6 +33,7 @@ namespace ProjectReversing.Traits
         private IEnumerator DisableBeginning()
         {
             yield return new WaitForSeconds(3f);
+            canPause = true;
             BeginningPanel.SetActive(false);
         }
         private void Update()
@@ -54,6 +56,10 @@ namespace ProjectReversing.Traits
         }
         public void Pause()
         {
+            if (!canPause)
+            {
+                return;
+            }
             isPaused = true;
             Time.timeScale = 0f;
         }
