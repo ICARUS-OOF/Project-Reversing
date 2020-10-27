@@ -4,4 +4,6 @@ Music - CO.AG Music
 
 Suggestions - Liu Yida, Pixelcraft King
 
-Sound effects provided by - SoundBible
+Sound effects provided by - SoundBible, Zapsplat
+
+Skybox - KeyMouse
