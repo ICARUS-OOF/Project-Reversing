@@ -1,4 +1,5 @@
 ﻿using ProjectReversing.Handlers;
+using System;
 using UnityEngine;
 namespace ProjectReversing.Data
 {
@@ -6,7 +7,7 @@ namespace ProjectReversing.Data
     public class GameData
     {
         public float[] position;
-
+        public DateTime lastPlayedTime;
         public GameData(GameHandler handler)
         {
             Vector3 CheckPointPos = GameHandler.LastCheckPointPos;
@@ -15,6 +16,8 @@ namespace ProjectReversing.Data
             position[0] = CheckPointPos.x;
             position[1] = CheckPointPos.y;
             position[2] = CheckPointPos.z;
+
+            lastPlayedTime = DateTime.Now;
         }
     }
 }

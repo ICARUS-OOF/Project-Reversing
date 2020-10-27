@@ -18,9 +18,12 @@ namespace ProjectReversing.Objects
         public PlayerInteraction playerInteractions { get; set; }
         private void Update()
         {
-            if (!ignoreTime && TimeController.singleton.TimeSlowed)
+            if (!ignoreTime)
             {
                 GetComponent<Rigidbody>().isKinematic = TimeController.singleton.TimeSlowed;
+            }
+            if (!ignoreTime && TimeController.singleton.TimeSlowed)
+            {
                 if (PlayerInteraction.singleton.currentlyPickedUpObject == gameObject)
                 {
                     pickedUp = false;

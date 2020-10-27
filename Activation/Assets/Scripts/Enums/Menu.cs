@@ -4,6 +4,7 @@
     {
         Main,
         Options,
-        About
+        About,
+        Loading
     }
 }

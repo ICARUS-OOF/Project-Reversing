@@ -1,4 +1,5 @@
-﻿using ProjectReversing.Handlers;
+﻿using ProjectReversing.Data;
+using ProjectReversing.Handlers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -75,6 +76,7 @@ namespace ProjectReversing.Traits
         public void Exit()
         {
             Time.timeScale = 1f;
+            SaveSystem.SaveGame(GameHandler.singleton, GameHandler.SaveFile);
             SceneManager.LoadScene("Lobby");
         }
     }

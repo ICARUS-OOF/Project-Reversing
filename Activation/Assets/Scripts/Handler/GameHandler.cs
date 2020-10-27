@@ -23,7 +23,8 @@ namespace ProjectReversing.Handlers
         public static float sensitivity = 1f;
         public static float volume = 1f;
         public static float GFX = 1f;
-        public static Vector3 LastCheckPointPos = Vector3.zero;
+        public static string SaveFile;
+        public static Vector3 LastCheckPointPos = new Vector3(2.75f, 0f, 1.490116e-08f);
         #endregion
         #region Events
         public EventHandler OnPlayerDie;
@@ -49,22 +50,14 @@ namespace ProjectReversing.Handlers
         {
             if (SceneManager.GetActiveScene().name == "Main")
             {
-                if (LastCheckPointPos != Vector3.zero)
-                {
-                    PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = true;
-                    PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = false;
-                    PlayerMovement.singleton.transform.position = LastCheckPointPos;
-                    PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = false;
-                    PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = true;
-                }
-                else
-                {
-                    PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = true;
-                    PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = false;
-                    PlayerMovement.singleton.transform.position = Vector3.zero;
-                    PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = false;
-                    PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = true;
-                }
+                PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = true;
+                PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = false;
+                PlayerMovement.singleton.transform.position = LastCheckPointPos;
+                PlayerMovement.singleton.GetComponent<Rigidbody>().isKinematic = false;
+                PlayerMovement.singleton.GetComponent<PlayerMovement>().enabled = true;
+            } else if (SceneManager.GetActiveScene().name == "Lobby")
+            {
+                LastCheckPointPos = new Vector3(2.75f, 0f, 1.490116e-08f);
             }
         }
         private void Update()
@@ -103,6 +96,10 @@ namespace ProjectReversing.Handlers
         void onCheckPointReached(object sender, Vector3 _pos)
         {
             LastCheckPointPos = _pos;
+        }
+        private void OnApplicationQuit()
+        {
+            SaveSystem.SaveGame(this, SaveFile);
         }
         #endregion
         #region Static Methods

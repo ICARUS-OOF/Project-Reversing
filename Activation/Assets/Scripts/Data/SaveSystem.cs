@@ -11,9 +11,11 @@ namespace ProjectReversing.Data
         {
             BinaryFormatter formatter = new BinaryFormatter();
             string path = Application.persistentDataPath + "/" + saveName +".saved";
+
             FileStream stream = new FileStream(path, FileMode.Create);
 
             GameData data = new GameData(handler);
+
             formatter.Serialize(stream, data);
             stream.Close();
         }
@@ -33,6 +35,19 @@ namespace ProjectReversing.Data
             {
                 Debug.LogError("Save file not found in" + path);
                 return null;
+            }
+        }
+        public static bool FileExists(string saveName)
+        {
+            string path = Application.persistentDataPath + "/" + saveName + ".saved";
+            return File.Exists(path);
+        }
+        public static void DeleteSave(string saveName)
+        {
+            string path = Application.persistentDataPath + "/" + saveName + ".saved";
+            if (FileExists(saveName))
+            {
+                File.Delete(path);
             }
         }
     }

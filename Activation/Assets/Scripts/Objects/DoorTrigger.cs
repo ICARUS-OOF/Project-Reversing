@@ -26,6 +26,7 @@ namespace ProjectReversing.Objects
         public void UnTrigger()
         {
             isTriggered = false;
+            _CurrentTriggerCount--;
         }
         private void FixedUpdate()
         {
