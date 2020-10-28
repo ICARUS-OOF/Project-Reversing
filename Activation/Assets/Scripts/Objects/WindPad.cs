@@ -10,8 +10,15 @@ namespace ProjectReversing.Objects
         public Vector3 windVel;
         public bool isTriggered { get; set; }
 
+        public bool autoTrigger = false;
+
         private int _CurrentTriggerCount = 0;
         public int NeededTriggerCount = 1;
+
+        private void Start()
+        {
+            isTriggered = autoTrigger;
+        }
 
         public void Trigger()
         {
@@ -37,7 +44,7 @@ namespace ProjectReversing.Objects
             if (col.transform.tag == ConstantHandler.PLAYER_TAG)
             {
                 Rigidbody player_rb = col.GetComponent<Rigidbody>();
-                player_rb.AddForce(windVel * 150);
+                player_rb.AddForce(windVel * 180);
             }
         }
 

@@ -71,6 +71,7 @@ namespace ProjectReversing.Traits
         }
         public void Respawn()
         {
+            Resume();
             GameHandler.singleton.OnPlayerDie?.Invoke(this, EventArgs.Empty);
         }
         public void Exit()
