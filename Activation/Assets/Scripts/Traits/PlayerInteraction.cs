@@ -104,6 +104,13 @@ namespace ProjectReversing.Traits
         {
             if (currentlyPickedUpObject != null && pickupRB != null)
             {
+                if (currentlyPickedUpObject.GetComponent<ActivationCube>() != null)
+                {
+                    if (!currentlyPickedUpObject.GetComponent<ActivationCube>().ignoreTime && TimeController.singleton.TimeSlowed)
+                    {
+                        return;
+                    }
+                }
                 currentDist = Vector3.Distance(pickupParent.position, pickupRB.position);
                 currentSpeed = Mathf.SmoothStep(minSpeed, maxSpeed, currentDist / maxDistance);
                 currentSpeed *= Time.fixedDeltaTime;

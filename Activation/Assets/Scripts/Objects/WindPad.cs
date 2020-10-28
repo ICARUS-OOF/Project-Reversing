@@ -37,7 +37,7 @@ namespace ProjectReversing.Objects
 
         private void OnTriggerEnter(Collider col)
         {
-            if (!isTriggered)
+            if (!isTriggered || TimeController.singleton.TimeSlowed)
             {
                 return;
             }

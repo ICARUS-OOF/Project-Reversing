@@ -1,7 +1,5 @@
 ﻿using ProjectReversing.Interfaces;
 using ProjectReversing.Traits;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 namespace ProjectReversing.Objects
 {
@@ -33,6 +31,7 @@ namespace ProjectReversing.Objects
         public void UnTrigger()
         {
             isTriggered = false;
+            _CurrentTriggerCount--;
         }
 
         private void Update()
