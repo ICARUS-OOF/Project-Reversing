@@ -4818,7 +4818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1708125338
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5046,7 +5046,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900614969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.52082115}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5208211}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 90928974}
@@ -5054,8 +5054,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 202.37701, y: 51.020985}
-  m_SizeDelta: {x: -578.9275, y: -410.337}
+  m_AnchoredPosition: {x: 211.96721, y: 48.399998}
+  m_SizeDelta: {x: -581.63293, y: -405.1792}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1900614971
 MonoBehaviour:
@@ -5079,20 +5079,20 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a427cbb8ae6cad14680454731137a342, type: 3}
-    m_FontSize: 30
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 155
-    m_Alignment: 0
-    m_AlignByGeometry: 0
+    m_Alignment: 4
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: This game was made by a dumb 12 year old named Kayden Chai who does not
-    know what he is doing, please don't blame me for bad physics and stuff cuz I
-    am too young to understand. Thx. OwO
+  m_Text: "This game was made by a dumb \n12 year old named \nKayden Chai who does
+    not know \nwhat he is doing, please \ndon't blame me for bad physics \nand stuff
+    cuz I am too young \nto understand. \nThx. OwO"
 --- !u!222 &1900614972
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5118,7 +5118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2122457243
 RectTransform:
   m_ObjectHideFlags: 0

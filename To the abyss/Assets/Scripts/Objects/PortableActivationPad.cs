@@ -50,7 +50,6 @@ namespace ProjectReversing.Objects
             ActivationCube activationCube = collider.GetComponent<ActivationCube>();
             if (activationCube != null && activationCube.activationColor == activationColor)
             {
-                Debug.Log("Untriggered");
                 AudioHandler.PlaySoundEffect("Door");
                 for (int i = 0; i < TriggersToActivate.Count; i++)
                 {

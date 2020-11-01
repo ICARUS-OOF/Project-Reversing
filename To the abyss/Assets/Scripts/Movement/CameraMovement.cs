@@ -6,6 +6,16 @@ namespace ProjectReversing.Movement
 {
     public class CameraMovement : MonoBehaviour
     {
+        #region Singleton
+        public static CameraMovement singleton;
+        private void Awake()
+        {
+            if (singleton == null)
+            {
+                singleton = this;
+            }
+        }
+        #endregion
         public Transform playerHead;
         public PostProcessVolume PPV;
         Vignette vignetteLayer;
