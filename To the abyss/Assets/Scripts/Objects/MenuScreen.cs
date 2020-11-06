@@ -68,7 +68,7 @@ namespace ProjectReversing.Objects
                 case Menu.Loading:
                     mainMenu.SetActive(false);
                     optionsMenu.SetActive(false);
-                    aboutMenu.SetActive(true);
+                    aboutMenu.SetActive(false);
                     LoadingMenu.SetActive(true);
                     break;
             }
