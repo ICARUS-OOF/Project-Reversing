@@ -6,10 +6,10 @@ namespace ProjectReversing.Setups
     public class PortalTexturer : MonoBehaviour
     {
         public Camera cameraA;
-        public Material camMatA;
+        private Material camMatA;
 
         public Camera cameraB;
-        public Material camMatB;
+        private Material camMatB;
 
         public MeshRenderer rendererA;
         public MeshRenderer rendererB;

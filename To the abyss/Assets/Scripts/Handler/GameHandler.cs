@@ -1,6 +1,5 @@
 ﻿using ProjectReversing.Data;
 using ProjectReversing.Movement;
-using ProjectReversing.Traits;
 using System;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;

@@ -19,9 +19,12 @@ namespace ProjectReversing.Traits
         public bool TimeSlowed = false;
         private void Update()
         {
-            if (PlayerUI.singleton.isPaused)
+            if (PlayerUI.singleton != null)
             {
-                return;
+                if (PlayerUI.singleton.isPaused)
+                {
+                    return;
+                }
             }
             DeltaTime = Time.fixedDeltaTime * TimeScale;
             if (Input.GetKeyDown(KeyHandler.ControlTime))

@@ -27,9 +27,12 @@ namespace ProjectReversing.Movement
         }
         void Update()
         {
-            if (PlayerUI.singleton.isPaused)
+            if (PlayerUI.singleton != null)
             {
-                return;
+                if (PlayerUI.singleton.isPaused)
+                {
+                    return;
+                }
             }
             transform.position = playerHead.position;
             if (TimeController.singleton != null)

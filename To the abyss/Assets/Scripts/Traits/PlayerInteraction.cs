@@ -119,13 +119,13 @@ namespace ProjectReversing.Traits
                 //Rotation
                 lookRot = Quaternion.LookRotation(mainCamera.transform.position - pickupRB.position);
                 lookRot = Quaternion.Slerp(mainCamera.transform.rotation, lookRot, rotationSpeed * Time.fixedUnscaledDeltaTime);
-                pickupRB.MoveRotation(lookRot);
+                //pickupRB.MoveRotation(lookRot);
                 if (lookObject == currentlyPickedUpObject)
                 {
                     pickupRB.constraints = RigidbodyConstraints.FreezeAll;
                 } else
                 {
-                    pickupRB.constraints = RigidbodyConstraints.None;
+                    pickupRB.constraints = RigidbodyConstraints.FreezeRotation;
                 }
             }
             if (currentlyPickedUpObject != null)
