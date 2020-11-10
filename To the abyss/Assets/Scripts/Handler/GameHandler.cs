@@ -44,6 +44,7 @@ namespace ProjectReversing.Handlers
             OnPlayerDie += onPlayerDie;
             OnCheckPointReached += onCheckPointReached;
             SceneManager.sceneLoaded += OnSceneLoaded;
+            Application.targetFrameRate = 200;
         }
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {

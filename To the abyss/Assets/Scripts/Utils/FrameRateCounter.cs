@@ -13,11 +13,16 @@ namespace ProjectReversing.Utils
         private void Start()
         {
             FPSText = GetComponent<Text>();
+            StartCoroutine(DelayedUpdate());
         }
-        private void Update()
+        private IEnumerator DelayedUpdate()
         {
-            fpsCounter = 1f / Time.deltaTime;
-            FPSText.text = "FPS: " + fpsCounter.ToString();
+            for ( ; ; )
+            {
+                fpsCounter = 1f / Time.deltaTime;
+                FPSText.text = "FPS: " + fpsCounter.ToString();
+                yield return new WaitForSeconds(.3f);
+            }
         }
     }
 }

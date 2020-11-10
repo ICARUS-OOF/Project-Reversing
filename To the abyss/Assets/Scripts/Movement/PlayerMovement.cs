@@ -182,8 +182,8 @@ namespace ProjectReversing.Movement
         private float desiredX;
         private void CameraLook()
         {
-            float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime * GameHandler.sensitivity;
-            float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime * GameHandler.sensitivity;
+            float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * GameHandler.sensitivity;
+            float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * GameHandler.sensitivity;
 
             //Find current look rotation
             Vector3 rot = playerCam.transform.localRotation.eulerAngles;
