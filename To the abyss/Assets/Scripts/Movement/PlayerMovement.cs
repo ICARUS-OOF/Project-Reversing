@@ -15,6 +15,7 @@ namespace ProjectReversing.Movement
         public Transform playerCam;
         public Transform orientation;
         public AudioSource footstepAudioSource;
+        public AudioSource fallingAudioSource;
 
         //Other
         private Rigidbody rb;
@@ -207,6 +208,13 @@ namespace ProjectReversing.Movement
             else if (rb.velocity.magnitude < 2f || !grounded)
             {
                 footstepAudioSource.volume = Mathf.Lerp(footstepAudioSource.volume, 0f, Time.fixedDeltaTime * 5f);
+            }
+            if (!grounded)
+            {
+                fallingAudioSource.volume = Mathf.Lerp(fallingAudioSource.volume, 0.03f * GameHandler.volume, Time.fixedDeltaTime * 5f);
+            } else
+            {
+                fallingAudioSource.volume = Mathf.Lerp(fallingAudioSource.volume, 0f * GameHandler.volume, Time.fixedDeltaTime * 5f);
             }
         }
 
