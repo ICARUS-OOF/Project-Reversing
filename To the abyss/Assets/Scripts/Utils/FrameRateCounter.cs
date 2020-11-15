@@ -9,7 +9,7 @@ namespace ProjectReversing.Utils
     public class FrameRateCounter : MonoBehaviour
     {
         private Text FPSText;
-        public double fpsCounter;
+        [SerializeField] private double fpsCounter;
         private void Start()
         {
             FPSText = GetComponent<Text>();

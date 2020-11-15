@@ -19,8 +19,8 @@ namespace ProjectReversing.Handlers
             }
         }
         #endregion
-        public List<SoundEffect> SoundEffects = new List<SoundEffect>();
-        public AudioSource source;
+        [SerializeField] private List<SoundEffect> SoundEffects = new List<SoundEffect>();
+        private AudioSource source;
         private void Start()
         {
             source = GetComponent<AudioSource>();

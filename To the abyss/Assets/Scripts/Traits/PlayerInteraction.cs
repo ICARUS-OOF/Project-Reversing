@@ -37,12 +37,12 @@ namespace ProjectReversing.Traits
 
         [Header("Rotation")]
         public float rotationSpeed = 100f;
-        Quaternion lookRot;
-        Vector3 oldEulerAngles;
+        private Quaternion lookRot;
+        private Vector3 oldEulerAngles;
 
         public float range = 10f;
-        RaycastHit _hitInfo;
-        RaycastHit _Holdablehit;
+        private RaycastHit _hitInfo;
+        private RaycastHit _Holdablehit;
         private void Update()
         {
             if (Input.GetKeyDown(KeyHandler.Interact))

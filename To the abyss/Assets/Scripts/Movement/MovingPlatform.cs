@@ -6,12 +6,12 @@ namespace ProjectReversing.Movement
 {
     public class MovingPlatform : MonoBehaviour, ITrigger
     {
-        public bool TimeReliant = true;
-        public float dirChangeDelay = 1f;
-        public float velDuration = 10f;
-        public Vector3 platformVelocity;
+        [SerializeField] private bool TimeReliant = true;
+        [SerializeField] private float dirChangeDelay = 1f;
+        [SerializeField] private float velDuration = 10f;
+        [SerializeField] private Vector3 platformVelocity;
         private Rigidbody rb;
-        bool isSwapped = false;
+        private bool isSwapped = false;
 
         public bool isTriggered { get; set; }
 

@@ -201,7 +201,15 @@ MonoBehaviour:
   - ID: Run
     clip: {fileID: 8300000, guid: 52701d38cda04874591c5a96f8613a07, type: 3}
     volume: 0.4
-  source: {fileID: 0}
+  - ID: Select
+    clip: {fileID: 8300000, guid: c584344d13022cd41aed9a65b6126180, type: 3}
+    volume: 1
+  - ID: ForceField
+    clip: {fileID: 8300000, guid: 0519a135b3fa9a845ba06a7bb810d5b7, type: 3}
+    volume: 1
+  - ID: Za Warudo
+    clip: {fileID: 8300000, guid: d024a4d083dc8484bb0d8d72362038f1, type: 3}
+    volume: 0.5
 --- !u!1 &8295443411350322843
 GameObject:
   m_ObjectHideFlags: 0

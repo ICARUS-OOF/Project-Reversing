@@ -8,7 +8,7 @@ namespace ProjectReversing.Utils
     {
         public void OnPointerEnter(PointerEventData eventData)
         {
-            AudioHandler.PlaySoundEffect("Highlight");
+            AudioHandler.PlaySoundEffect("Select");
         }
     }
 }

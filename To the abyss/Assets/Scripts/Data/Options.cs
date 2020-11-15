@@ -15,9 +15,9 @@ namespace ProjectReversing.Data
             }
         }
         #endregion
-        public Slider sensitvitySlider;
-        public Slider volumeSlider;
-        public Slider gfxSlider;
+        [SerializeField] private Slider sensitvitySlider;
+        [SerializeField] private Slider volumeSlider;
+        [SerializeField] private Slider gfxSlider;
         public float GetSensitivity()
         {
             return sensitvitySlider.value;

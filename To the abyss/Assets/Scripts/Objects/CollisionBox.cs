@@ -6,8 +6,8 @@ namespace ProjectReversing.Objects
 {
     public class CollisionBox : MonoBehaviour
     {
-        public string colliderTag = "Player";
-        public MonoBehaviour triggerScript;
+        [SerializeField] private string colliderTag = "Player";
+        [SerializeField] private MonoBehaviour triggerScript;
         private void OnTriggerEnter(Collider col)
         {
             if (col.transform.tag == colliderTag)

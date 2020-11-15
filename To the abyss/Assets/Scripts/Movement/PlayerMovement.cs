@@ -12,10 +12,10 @@ namespace ProjectReversing.Movement
         public static PlayerMovement singleton;
 
         //Assingables
-        public Transform playerCam;
-        public Transform orientation;
-        public AudioSource footstepAudioSource;
-        public AudioSource fallingAudioSource;
+        [SerializeField] private Transform playerCam;
+        [SerializeField] private Transform orientation;
+        [SerializeField] private AudioSource footstepAudioSource;
+        [SerializeField] private AudioSource fallingAudioSource;
 
         //Other
         private Rigidbody rb;
@@ -25,29 +25,29 @@ namespace ProjectReversing.Movement
         private float sensitivity = 50f;
 
         //Movement
-        public float moveSpeed = 4500;
-        public float maxSpeed = 20;
-        public bool grounded;
-        public LayerMask GroundLayer;
+        [SerializeField] private float moveSpeed = 4500;
+        [SerializeField] private float maxSpeed = 20;
+        [SerializeField] private bool grounded;
+        [SerializeField] private LayerMask GroundLayer;
 
-        public float counterMovement = 0.175f;
+        [SerializeField] private float counterMovement = 0.175f;
         private float threshold = 0.01f;
-        public float maxSlopeAngle = 35f;
+        [SerializeField] private float maxSlopeAngle = 35f;
 
         //Crouch & Slide
         private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
         private Vector3 playerScale;
-        public float slideForce = 400;
-        public float slideCounterMovement = 0.2f;
+        [SerializeField] private float slideForce = 400;
+        [SerializeField] private float slideCounterMovement = 0.2f;
 
         //Jumping
         private bool readyToJump = true;
         private float jumpCooldown = 0.25f;
-        public float jumpForce = 550f;
+        [SerializeField] private float jumpForce = 550f;
 
         //Input
-        float x, y;
-        bool jumping;
+        private float x, y;
+        private bool jumping;
 
         //Sliding
         private Vector3 normalVector = Vector3.up;
@@ -211,7 +211,7 @@ namespace ProjectReversing.Movement
             }
             if (!grounded)
             {
-                fallingAudioSource.volume = Mathf.Lerp(fallingAudioSource.volume, 0.03f * GameHandler.volume, Time.fixedDeltaTime * 5f);
+                fallingAudioSource.volume = Mathf.Lerp(fallingAudioSource.volume, 0.08f * GameHandler.volume, Time.fixedDeltaTime * 5f);
             } else
             {
                 fallingAudioSource.volume = Mathf.Lerp(fallingAudioSource.volume, 0f * GameHandler.volume, Time.fixedDeltaTime * 5f);

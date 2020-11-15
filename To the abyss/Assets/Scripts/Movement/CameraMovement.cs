@@ -16,10 +16,10 @@ namespace ProjectReversing.Movement
             }
         }
         #endregion
-        public Transform playerHead;
-        public PostProcessVolume PPV;
-        Vignette vignetteLayer;
-        ChromaticAberration chromaticAberrationLayer;
+        [SerializeField] private Transform playerHead;
+        [SerializeField] private PostProcessVolume PPV;
+        private Vignette vignetteLayer;
+        private ChromaticAberration chromaticAberrationLayer;
         private void Start()
         {
             PPV.profile.TryGetSettings(out vignetteLayer);

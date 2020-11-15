@@ -6,7 +6,7 @@ namespace ProjectReversing.Setups
     public class PortalTeleporter : MonoBehaviour
     {
 		private Transform player;
-		public Transform reciever;
+		[SerializeField] private Transform reciever;
 
 		private bool playerIsOverlapping = false;
 

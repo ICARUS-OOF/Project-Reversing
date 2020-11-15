@@ -3233,6 +3233,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 3737014625018219292, guid: 7d5c992eeffe4c54eaacd6e438e1d0a3, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0519a135b3fa9a845ba06a7bb810d5b7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d5c992eeffe4c54eaacd6e438e1d0a3, type: 3}
 --- !u!1 &891722462

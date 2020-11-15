@@ -3,18 +3,17 @@ using ProjectReversing.Interfaces;
 using ProjectReversing.Traits;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 namespace ProjectReversing.Objects
 {
     public class ActivationCube : MonoBehaviour, IHoldable
     {
         public ActivationColor activationColor;
-        public float waitOnPickup = 0.2f;
-        public float breakForce = 35f;
+        [SerializeField] private float waitOnPickup = 0.2f;
+        [SerializeField] private float breakForce = 35f;
 
         public bool ignoreTime = false;
         public bool pickedUp { get; set; }
-        public Light spotLight;
+        [SerializeField] private Light spotLight;
         public PlayerInteraction playerInteractions { get; set; }
         private void Update()
         {

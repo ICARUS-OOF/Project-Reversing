@@ -7,8 +7,8 @@ namespace ProjectReversing.Objects
     public class PortalCamera : MonoBehaviour
     {
         private Transform playerCam;
-        public Transform portal;
-        public Transform otherPortal;
+        [SerializeField] private Transform portal;
+        [SerializeField] private Transform otherPortal;
 
         private void Start()
         {
