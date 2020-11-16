@@ -43,27 +43,28 @@ namespace ProjectReversing.Objects
                 }
             }
             
-            Collider[] IntoCrashColliders = Physics.OverlapSphere(transform.position, stormRadius);
+            Collider[] IntoCrashColliders = Physics.OverlapSphere(transform.position, crashRadius);
             for (int i = 0; i < IntoCrashColliders.Length; i++)
             {
                 Collider col = IntoCrashColliders[i];
                 if (col.transform.tag == ConstantHandler.ACTCUBE_TAG)
                 {
                     Destroy(col.transform.gameObject);
-                    ZaWarudo();
+                    ActivationCubeList.Remove(col.transform.gameObject);
+                    StopTime();
                 }
             }
 
             for (int i = 0; i < ActivationCubeList.Count; i++)
             {
                 GameObject activationCube = ActivationCubeList[i];
-                activationCube.transform.position = Vector3.Lerp(activationCube.transform.position, transform.position, TimeController.singleton.DeltaTime * .1f);
+                activationCube.transform.position = Vector3.Lerp(activationCube.transform.position, transform.position, TimeController.singleton.DeltaTime * .2f);
             }
         }
 
-        private void ZaWarudo()
+        private void StopTime()
         {
-
+            ZaWarudo.singleton.MegaStopTime();
         }
     }
 }

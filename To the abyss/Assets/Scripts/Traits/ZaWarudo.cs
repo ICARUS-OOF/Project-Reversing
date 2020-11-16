@@ -1,15 +1,31 @@
 ﻿using ProjectReversing.Handlers;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
-namespace ProjectReversing.Utils
+namespace ProjectReversing.Traits
 {
     public class ZaWarudo : MonoBehaviour
     {
+        #region Singleton
+        public static ZaWarudo singleton;
+        private void Awake()
+        {
+            if (singleton == null)
+            {
+                singleton = this;
+            }
+        }
+        #endregion
+
         private PostProcessVolume PPV;
+        private Animator anim;
+
+        private float shakeIntesity = 0;
 
         [SerializeField, Range(-100f, 100f)] private float lensDistortionIntensity = 0;
         [SerializeField, Range(0f, 1f)] private float chromaticAberrationIntensity = .4f;
         [SerializeField, Range(-180, 180)] private float saturation = 0;
+
+        [SerializeField] private Transform cam;
 
         private LensDistortion lensDistortion;
         private ChromaticAberration chromaticAberration;
@@ -17,11 +33,13 @@ namespace ProjectReversing.Utils
 
         private void Start()
         {
+            anim = GetComponent<Animator>();
             PPV = GetComponent<PostProcessVolume>();
             PPV.profile.TryGetSettings<LensDistortion>(out lensDistortion);
             PPV.profile.TryGetSettings<ChromaticAberration>(out chromaticAberration);
             PPV.profile.TryGetSettings<ColorGrading>(out colorGrading);
         }
+
         private void Update()
         {
             //Lens Distortion
@@ -35,12 +53,41 @@ namespace ProjectReversing.Utils
             //Color Grading
             colorGrading.enabled.value = true;
             colorGrading.saturation.value = saturation;
+        }
+        public void MegaStopTime()
+        {
+            anim.SetTrigger("Za Warudo");
+            AudioHandler.PlaySoundEffect("Za Warudo");
+            ShakeCamera(.35f, 2f);
+        }
 
-            if (Input.GetKeyDown(KeyCode.R))
+        public void ShakeCamera(float intensity, float duration)
+        {
+            shakeIntesity = intensity;
+            InvokeRepeating(nameof(StartCameraShake), 0, .01f);
+            Invoke(nameof(StopCameraShake), duration);
+        }
+
+        private void StartCameraShake()
+        {
+            if (shakeIntesity > 0)
             {
-                GetComponent<Animator>().SetTrigger("Za Warudo");
-                AudioHandler.PlaySoundEffect("Za Warudo");
+                Vector3 camPos = cam.position;
+
+                float offsetX = Random.value * shakeIntesity * 2 - shakeIntesity;
+                float offsetY = Random.value * shakeIntesity * 2 - shakeIntesity;
+
+                camPos.x += offsetX;
+                camPos.y += offsetY;
+
+                cam.position = camPos;
             }
+        }
+
+        private void StopCameraShake()
+        {
+            CancelInvoke(nameof(StartCameraShake));
+            cam.localPosition = Vector3.zero;
         }
     }
 }
