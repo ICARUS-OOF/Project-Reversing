@@ -1,4 +1,5 @@
 ﻿using ProjectReversing.Handlers;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 namespace ProjectReversing.Traits
@@ -56,9 +57,10 @@ namespace ProjectReversing.Traits
         }
         public void MegaStopTime()
         {
+            TimeController.singleton.TimeSlowed = true;
             anim.SetTrigger("Za Warudo");
             AudioHandler.PlaySoundEffect("Za Warudo");
-            ShakeCamera(.35f, 2f);
+            ShakeCamera(.1f, 2f);
         }
 
         public void ShakeCamera(float intensity, float duration)
@@ -74,8 +76,8 @@ namespace ProjectReversing.Traits
             {
                 Vector3 camPos = cam.position;
 
-                float offsetX = Random.value * shakeIntesity * 2 - shakeIntesity;
-                float offsetY = Random.value * shakeIntesity * 2 - shakeIntesity;
+                float offsetX = Random.value * shakeIntesity * 2f - shakeIntesity;
+                float offsetY = Random.value * shakeIntesity * 2f - shakeIntesity;
 
                 camPos.x += offsetX;
                 camPos.y += offsetY;

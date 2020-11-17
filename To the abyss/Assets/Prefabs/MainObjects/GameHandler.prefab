@@ -209,7 +209,10 @@ MonoBehaviour:
     volume: 1
   - ID: Za Warudo
     clip: {fileID: 8300000, guid: d024a4d083dc8484bb0d8d72362038f1, type: 3}
-    volume: 0.5
+    volume: 0.65
+  - ID: Explosion
+    clip: {fileID: 8300000, guid: d11c3d249974ed240bd02882599e098c, type: 3}
+    volume: 0.05
 --- !u!1 &8295443411350322843
 GameObject:
   m_ObjectHideFlags: 0

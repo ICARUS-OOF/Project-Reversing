@@ -226,13 +226,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupParent: {fileID: 822614752834549988}
   currentlyPickedUpObject: {fileID: 0}
-  minSpeed: 150
-  maxSpeed: 300
-  maxDistance: 3
-  sphereCastRadius: 0.5
+  minSpeed: 300
+  maxSpeed: 450
+  maxDistance: 2
+  sphereCastRadius: 5
   lookObject: {fileID: 822614752379097713}
   rotationSpeed: 100
-  range: 3
+  range: 5
 --- !u!95 &3501303804861009010
 Animator:
   serializedVersion: 3

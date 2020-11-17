@@ -58,11 +58,7 @@ namespace ProjectReversing.Traits
             }
             if (Physics.Raycast(transform.position, mainCamera.transform.forward, out _Holdablehit, maxDistance))
             {
-                IHoldable holdable = _Holdablehit.collider.GetComponent<IHoldable>();
-                if (holdable != null)
-                {
-                    lookObject = _Holdablehit.collider.gameObject;
-                }
+                lookObject = _Holdablehit.collider.gameObject;
             }
             else
             {
