@@ -1,5 +1,6 @@
 ﻿using ProjectReversing.Handlers;
 using ProjectReversing.Movement;
+using ProjectReversing.Traits;
 using UnityEngine;
 namespace ProjectReversing.Setups
 {

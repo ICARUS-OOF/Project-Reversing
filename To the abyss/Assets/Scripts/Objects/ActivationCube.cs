@@ -46,6 +46,9 @@ namespace ProjectReversing.Objects
                 case "ACT_GREEN (Instance)":
                     activationColor = ActivationColor.Green;
                     break;
+                case "ACT_ABYSS (Instance)":
+                    activationColor = ActivationColor.Abyss;
+                    break;
             }
             spotLight.color = GetComponent<MeshRenderer>().material.color;
         }

@@ -150,7 +150,7 @@ namespace ProjectReversing.Traits
             physicsObject = lookObject.GetComponent<IHoldable>();
             currentlyPickedUpObject = lookObject;
             pickupRB = currentlyPickedUpObject.GetComponent<Rigidbody>();
-            physicsObject.playerInteractions = this;
+            physicsObject.playerInteractions = this; 
             StartCoroutine(physicsObject.Hold());
         }
     }

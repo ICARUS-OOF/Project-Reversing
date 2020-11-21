@@ -1,5 +1,6 @@
 ﻿using ProjectReversing.Handlers;
 using ProjectReversing.Traits;
+using ProjectReversing.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace ProjectReversing.Objects
 
         [SerializeField] private ParticleSystem stormParticles;
         [SerializeField] private ParticleSystem explosionParticles;
+
+        [SerializeField] private MonoBehaviour[] triggers;
 
         private List<GameObject> ActivationCubeList = new List<GameObject>();
 
@@ -82,6 +85,11 @@ namespace ProjectReversing.Objects
             ZaWarudo.singleton.MegaStopTime();
             timeStopped = true;
             StartCoroutine(SetAudioVolume(0f, 2f));
+            for (int i = 0; i < triggers.Length; i++)
+            {
+                ITrigger _trigger = triggers[i] as ITrigger;
+                _trigger.Trigger();
+            }
         }
         private IEnumerator SetAudioVolume(float targetVolume, float delay)
         {

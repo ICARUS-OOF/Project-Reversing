@@ -226,8 +226,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupParent: {fileID: 822614752834549988}
   currentlyPickedUpObject: {fileID: 0}
-  minSpeed: 300
-  maxSpeed: 450
+  minSpeed: 1400
+  maxSpeed: 1500
   maxDistance: 2
   sphereCastRadius: 5
   lookObject: {fileID: 822614752379097713}
@@ -466,6 +466,8 @@ MonoBehaviour:
   orientation: {fileID: 822614752872253048}
   footstepAudioSource: {fileID: 4108235962669943826}
   fallingAudioSource: {fileID: 8120101403151145135}
+  camMovement: {fileID: 0}
+  playerInteraction: {fileID: 0}
   moveSpeed: 680
   maxSpeed: 6
   grounded: 0

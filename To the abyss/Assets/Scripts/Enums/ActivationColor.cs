@@ -8,6 +8,7 @@ namespace ProjectReversing.Enums
         Red,
         Blue,
         Yellow,
-        Green
+        Green,
+        Abyss
     }
 }

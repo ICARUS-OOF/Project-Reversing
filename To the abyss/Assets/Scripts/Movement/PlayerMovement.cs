@@ -1,7 +1,6 @@
 ﻿using ProjectReversing.Handlers;
 using ProjectReversing.Traits;
 using System;
-using System.Collections;
 using UnityEngine;
 namespace ProjectReversing.Movement
 {
@@ -16,6 +15,8 @@ namespace ProjectReversing.Movement
         [SerializeField] private Transform orientation;
         [SerializeField] private AudioSource footstepAudioSource;
         [SerializeField] private AudioSource fallingAudioSource;
+        public CameraMovement camMovement;
+        public PlayerInteraction playerInteraction;
 
         //Other
         private Rigidbody rb;
